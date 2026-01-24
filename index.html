@@ -1,373 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>3D Print Studio – Custom & Ready-Made Prints</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root {
-  --bg: #070b1a;
-  --bg-soft: #0d1230;
-  --card: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.12);
-  --text: #eef1ff;
-  --muted: #a7add6;
-  --accent: linear-gradient(135deg,#ff6fd8,#00f5ff,#ffe36e);
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: "Inter", system-ui, sans-serif;
-  background: radial-gradient(circle at top, #10163d, var(--bg) 55%);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-.container {
-  width: 92%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* ---------- HEADER ---------- */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(14px);
-  background: rgba(5,8,25,0.8);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-}
-
-.logo {
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  font-size: 0.85rem;
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-}
-
-.logo span {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 14px rgba(255,111,216,.8);
-}
-
-nav {
-  display: flex;
-  gap: 1.4rem;
-  font-size: .9rem;
-}
-
-nav a {
-  color: var(--muted);
-  transition: .2s;
-}
-
-nav a:hover { color: #fff; }
-
-.cta {
-  padding: .5rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  cursor: pointer;
-  color: #fff;
-}
-
-/* ---------- HERO ---------- */
-.hero {
-  min-height: 85vh;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  padding: 4rem 0;
-}
-
-.hero h1 {
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
-  line-height: 1.15;
-  margin-bottom: 1rem;
-}
-
-.gradient {
-  background: var(--accent);
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  max-width: 520px;
-  color: var(--muted);
-  margin-bottom: 1.8rem;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #070b1a;
-  padding: .75rem 1.6rem;
-  border-radius: 999px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-outline {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: #fff;
-  padding: .75rem 1.4rem;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-/* ---------- HERO CARD ---------- */
-.preview {
-  position: relative;
-  padding: 1.6rem;
-  border-radius: 24px;
-  background: linear-gradient(160deg,#151b45,#070b1a);
-  border: 1px solid var(--border);
-  box-shadow: 0 25px 60px rgba(0,0,0,.6);
-}
-
-.preview h4 {
-  font-size: .85rem;
-  color: var(--muted);
-  margin-bottom: .8rem;
-}
-
-.fake-printer {
-  height: 220px;
-  border-radius: 18px;
-  background: radial-gradient(circle at top,#202867,#090b1a);
-  position: relative;
-  overflow: hidden;
-}
-
-.fake-printer::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle,#00f5ff44,transparent 60%);
-  animation: pulse 3s infinite;
-}
-
-@keyframes pulse {
-  0%{opacity:.4}
-  50%{opacity:.9}
-  100%{opacity:.4}
-}
-
-/* ---------- SECTIONS ---------- */
-section {
-  padding: 4rem 0;
-}
-
-.section-title {
-  font-size: 1.6rem;
-  margin-bottom: .4rem;
-}
-
-.section-sub {
-  color: var(--muted);
-  margin-bottom: 2rem;
-  max-width: 600px;
-}
-
-/* ---------- PRODUCTS ---------- */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-  gap: 1.6rem;
-}
-
-.product {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: .25s;
-}
-
-.product:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,.45);
-}
-
-.product-img {
-  height: 150px;
-  border-radius: 14px;
-  background: linear-gradient(135deg,#1d235a,#0b1024);
-  margin-bottom: 1rem;
-}
-
-.price {
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.product button {
-  margin-top: .8rem;
-  width: 100%;
-}
-
-/* ---------- CUSTOM ---------- */
-.custom {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 2rem;
-}
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 1.4rem;
-}
-
-/* ---------- FOOTER ---------- */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 2rem 0;
-  color: var(--muted);
-  font-size: .8rem;
-  margin-top: 3rem;
-}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .custom{grid-template-columns:1fr}
-  nav{display:none}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My 3D Prints</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<header>
-  <div class="container nav">
-    <div class="logo"><span></span>3D PRINT STUDIO</div>
-    <nav>
-      <a href="#products">Products</a>
-      <a href="#custom">Custom</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="cta" onclick="location.href='#contact'">Get Quote</button>
-  </div>
-</header>
+  <header>
+    <h1>Little Bot Creations</h1>
+    <p>Thank you for stopping by my shop. I am an 11 year old boy who is passionate about 3D printing and creating unique designs. </p>
+  </header>
 
-<main class="container">
+    <section class="order">
+    <h2>Place an Order</h2>
+    <p>Click below to customize and order your print</p>
+    <a class="order-btn" href="https://forms.gle/sfZcHqLcecstn6UR6" target="_blank">
+      Order Now
+    </a>
+  </section>
 
-<section class="hero">
-  <div>
-    <h1>
-      Premium <span class="gradient">3D Printing</span><br>
-      Made Simple
-    </h1>
-    <p>
-      High-quality custom and ready-made 3D prints.  
-      Perfect for prototypes, gifts, accessories, and functional parts.
-    </p>
-    <div class="hero-buttons">
-      <button class="btn-primary">Browse Prints</button>
-      <button class="btn-outline">Custom Order</button>
-    </div>
-  </div>
-
-  <div class="preview">
-    <h4>Live print preview</h4>
-    <div class="fake-printer"></div>
-  </div>
-</section>
-
-<section id="products">
-  <h2 class="section-title">Ready-Made Prints</h2>
-  <p class="section-sub">Fast shipping. Custom colors available.</p>
-
-  <div class="products">
-    <div class="product">
-      <div class="product-img"></div>
-      <h3>Phone Case</h3>
-      <p class="section-sub">Flexible PLA • Multiple colors</p>
-      <div class="price">$5.99</div>
-      <button class="btn-outline">Order</button>
-    </div>
-
-    <div class="product">
-      <div class="product-img"></div>
-      <h3>Desk Organizer</h3>
-      <p class="section-sub">Office set • PLA/PETG</p>
-      <div class="price">$9.99</div>
-      <button class="btn-outline">Order</button>
-    </div>
-
-    <div class="product">
-      <div class="product-img"></div>
-      <h3>Finger Basketball Set</h3>
-      <p class="section-sub">Mini set • High detail</p>
-      <div class="price">$5.99</div>
-      <button class="btn-outline">Order</button>
-    </div>
-  </div>
-</section>
-
-<section id="custom">
-  <h2 class="section-title">Custom 3D Printing</h2>
-  <p class="section-sub">Have a file or just an idea? We’ll handle the rest.</p>
-
-  <div class="custom">
-    <div>
-      <ul>
-        <li>✔ Functional parts</li>
-        <li>✔ Prototypes</li>
-        <li>✔ Replacement parts</li>
-        <li>✔ Props & miniatures</li>
-      </ul>
+  <section class="gallery">
+    
+    <div class="card">
+      <img src="./images/hoodie.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>Pencil Holder</h3>
+            <p><strong>Colors:</strong> Red, Black, White</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
     </div>
 
     <div class="card">
-      <strong>Email us:</strong><br>
-      <a href="mailto:aveergupta@gmail.com" style="color:#00f5ff">aveergupta@gmail.com</a>
-      <p class="section-sub">
-        Include size, material, quantity, and color.
-      </p>
+      <img src="./images/cutedog.jpg" alt="Product image">
+      <div class="card-content">
+        <h3>Cute Dog</h3>
+        <p><strong>Colors:</strong> Red, Black, White</p>
+        <p><strong>Price:</strong> $5.00</p>
+      </div>
     </div>
-  </div>
-</section>
 
-</main>
+        <div class="card">
+      <img src="./images/PufferJacket.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>Puffer Jacket</h3>
+            <p><strong>Colors:</strong> Rainbow, Black, White, orange, green, yellow, blue, and purple</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
+    </div>
 
-<footer>
-  <div class="container">
-    © 2026 3D Print Studio · Custom Manufacturing
-  </div>
-</footer>
 
+ 
+ <div class="card">
+      <img src="./images/jewellery-stand.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>Jewellery Stand</h3>
+            <p><strong>Colors:</strong> Red, Black, White</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
+    </div>
+
+
+ <div class="card">
+      <img src="./images/airpodcase.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>AirPod Case</h3>
+            <p><strong>Colors:</strong> Red, Black, White</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/toad-pencil-holder.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>Toad Pencil Holder</h3>
+            <p><strong>Colors:</strong> Red, Black, White</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
+    </div>
+
+    <div class="card">
+      <img src="./images/shoe-makeup-holder.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>Shoe Makeup Holder</h3>
+            <p><strong>Colors:</strong> Red, Black, White</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
+    </div>
+
+
+    <div class="card">
+      <img src="./images/doctor-coat-pencil-holder.jpeg" alt="Product image">
+        <div class="card-content">
+            <h3>Doctor Coat Pencil Holder</h3>
+            <p><strong>Colors:</strong> Red, Black, White</p>
+            <p><strong>Price:</strong> $5.00</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="order">
+    <h2>Place an Order</h2>
+    <p>Click below to customize and order your print</p>
+    <a class="order-btn" href="https://forms.gle/sfZcHqLcecstn6UR6" target="_blank">
+      Order Now
+    </a>
+  </section>
+
+  <footer>
+    <p>© Little Bot Creations</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
