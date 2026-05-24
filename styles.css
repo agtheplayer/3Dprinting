@@ -1,7 +1,8 @@
 :root {
   --bg: #f4f4f4;
-  --text: #222;
+  --text: #222222;
   --card: #ffffff;
+  --card-text: #222222; /* Added to explicitly control card text */
   --accent: #ff6f3c;
   --toggle-bg: #222222;
   --toggle-text: #ffffff;
@@ -9,8 +10,9 @@
 
 body.dark {
   --bg: #121212;
-  --text: #f4f4f4;
+  --text: #e0e0e0;
   --card: #1f1f1f;
+  --card-text: #ffffff; /* Light text for dark cards */
   --toggle-bg: #ffffff;
   --toggle-text: #222222;
 }
@@ -26,6 +28,7 @@ body {
 header {
   text-align: center;
   padding: 2rem;
+  /* Softened gradient transition or alternate color for dark mode can go here */
   background: linear-gradient(135deg, var(--accent), #ff9f68);
   color: white;
 }
@@ -39,7 +42,7 @@ header button {
   color: var(--toggle-text);
   font-weight: bold;
   margin-top: 1rem;
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.3s, transform 0.2s, color 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -62,11 +65,12 @@ header button:active {
 
 .card {
   background: var(--card);
+  color: var(--card-text); /* Fixed: Apply variable to card text */
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   transform: translateY(0);
-  transition: transform 0.3s, box-shadow 0.3s, background-color 0.4s;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.4s, color 0.4s;
 }
 
 .card:hover {
